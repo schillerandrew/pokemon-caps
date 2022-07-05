@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "axios": "^0.27.2",
+    "chance": "^1.1.8",
+    "dotenv": "^16.0.1",
+    "jest": "^28.1.2",
+    "socket.io": "^4.5.1",
+    "socket.io-client": "^4.5.1",
+    "supertest": "^6.2.4"
+  }
+}
