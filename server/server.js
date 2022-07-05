@@ -17,7 +17,7 @@ caps.on('connection', socket => {
     socket.emit('JOIN', queueId);
   });
 
-  socket.on('SUBSCRIPTION-RECEIVED', (payload) => {
+  socket.on('ORDER-RECEIVED', (payload) => {
     let currentQueue = messageQueue.read(payload.queueId);
     if (!currentQueue) {
       let queueKey = messageQueue.store(payload.queueId, new Queue());
@@ -25,11 +25,11 @@ caps.on('connection', socket => {
     }
     currentQueue.store(payload.messageId, payload);
 
-    let log = new Log('SUBSCRIPTION-RECEIVED', payload);
+    let log = new Log('ORDER-RECEIVED', payload);
 
     let message = currentQueue.remove(payload.messageId);
     console.log(log);
-    caps.emit('SUBSCRIPTION-RECEIVED', message);
+    caps.emit('ORDER-RECEIVED', message);
   });
 
   socket.on('PICKUP_REQUESTED', (payload) => {

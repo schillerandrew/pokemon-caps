@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "axios": "^0.27.2",
     "chance": "^1.1.8",
     "dotenv": "^16.0.1",
     "jest": "^28.1.2",
