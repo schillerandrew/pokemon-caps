@@ -32,7 +32,7 @@ caps.on('connection', socket => {
     caps.emit('ORDER-RECEIVED', message);
   });
 
-  socket.on('PICKUP_REQUESTED', (payload) => {
+  socket.on('PICKUP-REQUESTED', (payload) => {
     let currentQueue = messageQueue.read(payload.queueId);
     if (!currentQueue) {
       throw new Error('No messages in the Queue');
@@ -40,18 +40,18 @@ caps.on('connection', socket => {
 
     let log = new Log('SCHEDULED FOR PICKUP', payload);
     console.log(log);
-    caps.emit('PICKUP_REQUESTED', payload);
+    caps.emit('PICKUP-REQUESTED', payload);
   });
 
-  socket.on('IN_TRANSIT', (payload) => {
+  socket.on('IN-TRANSIT', (payload) => {
     console.log(payload);
     let currentQueue = messageQueue.read(payload.queueId);
     if (!currentQueue) {
       throw new Error('No messages in the Queue');
     }
-    let log = new Log('IN-TRANSIT', payload);
+    let log = new Log('IN_TRANSIT', payload);
     console.log(log);
-    caps.emit('IN_TRANSIT', payload);
+    caps.emit('IN-TRANSIT', payload);
   });
   
   socket.on('DELIVERED', (payload) => {
@@ -61,6 +61,6 @@ caps.on('connection', socket => {
     }
     let log = new Log('DELIVERED', payload);
     console.log(log);
-    caps.emit('DELIVERY_CONFIRMED', payload);
+    caps.emit('DELIVERY-CONFIRMED', payload);
   });
 });
